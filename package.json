@@ -1,0 +1,26 @@
+{
+  "name": "slidev-addon-second-screen",
+  "version": "0.1.0",
+  "type": "module",
+  "keywords": [
+    "slidev-addon",
+    "slidev"
+  ],
+  "description": "Open presentation on second screen in fullscreen from presenter view",
+  "license": "MIT",
+  "author": "Denis Sowa",
+  "peerDependencies": {
+    "vue": "^3.5.0"
+  },
+  "dependencies": {
+    "@slidev/client": "^52.14.2"
+  },
+  "files": [
+    "custom-nav-controls.vue",
+    "components"
+  ],
+  "engines": {
+    "node": ">=18",
+    "slidev": ">=0.52.0"
+  }
+}
