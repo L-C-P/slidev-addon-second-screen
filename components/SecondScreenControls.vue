@@ -53,6 +53,7 @@ onMounted(() => {
 onUnmounted(() => {
   document.removeEventListener('fullscreenchange', handleFullscreenChange);
   window.removeEventListener('message', handlePresenterMessage);
+  window.removeEventListener('beforeunload', beforeUnloadHandler);
   if (keydownHandler) {
     document.removeEventListener('keydown', keydownHandler);
   }
@@ -135,7 +136,7 @@ function createFullscreenPrompt() {
       Enter Fullscreen
     </button>
     <p style="margin: 20px 0 0 0; color: #999; font-size: 12px;">
-      Or press F11 / Cmd+Shift+F
+      Or press F11 to enter fullscreen
     </p>
   `;
 
@@ -264,28 +265,28 @@ function closeSecondWindow() {
 </script>
 
 <template>
-      <!-- Open on Second Screen Button -->
-      <div class="w-1px opacity-10 bg-current m-1 lg:m-2" v-if="isPresenter"></div>
-      <button
-        class="slidev-icon-btn"
-        :class="{ 'opacity-50': !isApiSupported || secondWindow === null }"
-        :title="!isApiSupported ? 'Not supported in this browser. Use Chrome 100+ or Edge 100+.' : (secondWindow !== null ? 'Close second screen' : 'Open presentation on second screen')"
-        :disabled="!isApiSupported"
-        @click="secondWindow !== null ? closeSecondWindow() : openOnSecondScreen()"
-        v-if="isPresenter"
-      >
-        <span class="sr-only">Second Screen</span>
-        <svg v-if="secondWindow === null" class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
-          <line x1="8" y1="21" x2="16" y2="21"></line>
-          <line x1="12" y1="17" x2="12" y2="21"></line>
-        </svg>
-        <svg v-else class="btn-icon" viewBox="0 0 24 24" fill="currentColor">
-          <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
-          <line x1="8" y1="21" x2="16" y2="21" stroke="currentColor" stroke-width="2"></line>
-          <line x1="12" y1="17" x2="12" y2="21" stroke="currentColor" stroke-width="2"></line>
-        </svg>
-      </button>
+  <!-- Open on Second Screen Button -->
+  <div class="w-1px opacity-10 bg-current m-1 lg:m-2" v-if="isPresenter"></div>
+  <button
+    v-if="isPresenter"
+    class="slidev-icon-btn"
+    :class="{ 'opacity-50': !isApiSupported || secondWindow === null }"
+    :title="!isApiSupported ? 'Not supported in this browser. Use Chrome 100+ or Edge 100+.' : (secondWindow !== null ? 'Close second screen' : 'Open presentation on second screen')"
+    :disabled="!isApiSupported"
+    @click="secondWindow !== null ? closeSecondWindow() : openOnSecondScreen()"
+  >
+    <span class="sr-only">Second Screen</span>
+    <svg v-if="secondWindow === null" class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+      <line x1="8" y1="21" x2="16" y2="21"></line>
+      <line x1="12" y1="17" x2="12" y2="21"></line>
+    </svg>
+    <svg v-else class="btn-icon" viewBox="0 0 24 24" fill="currentColor">
+      <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+      <line x1="8" y1="21" x2="16" y2="21" stroke="currentColor" stroke-width="2"></line>
+      <line x1="12" y1="17" x2="12" y2="21" stroke="currentColor" stroke-width="2"></line>
+    </svg>
+  </button>
 </template>
 
 <style scoped>
