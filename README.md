@@ -111,38 +111,6 @@ You can manage these permissions in your browser's site settings.
 - In build mode, sync uses BroadcastChannel (same browser, same device)
 - In dev mode, sync uses the Vite dev server
 
-## Development
-
-For local development:
-
-```bash
-# Clone the repository
-git clone https://github.com/yourusername/slidev-addon-second-screen.git
-cd slidev-addon-second-screen
-
-# Create a test slides.md
-cat > slides.md << 'EOF'
----
-addons:
-  - ./
----
-
-# Test Slide
-
-This is a test presentation for the second screen addon.
-
----
-
-# Second Slide
-
-Navigate between slides to test sync.
-EOF
-
-# Start Slidev
-npm install
-npm run dev
-```
-
 ## License
 
 MIT
