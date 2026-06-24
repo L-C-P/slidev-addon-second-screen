@@ -22,5 +22,13 @@
   "engines": {
     "node": ">=18",
     "slidev": ">=0.52.0"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/L-C-P/slidev-addon-second-screen.git"
+  },
+  "bugs": {
+    "url": "https://github.com/L-C-P/slidev-addon-second-screen/issues"
+  },
+  "homepage": "https://github.com/L-C-P/slidev-addon-second-screen#readme"
 }
